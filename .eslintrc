@@ -6,9 +6,10 @@
     "airbnb",
     "prettier",
     "plugin:testing-library/react",
-    "plugin:jest-dom/recommended"
+    "plugin:jest-dom/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "globals": {
     "document": true,
     "localStorage": true,
@@ -23,7 +24,7 @@
     "jest-dom"
   ],
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts"] }],
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-wrap-multilines": ["error", {"declaration": false, "assignment": false}],
     "react/jsx-props-no-spreading": "off",
@@ -49,7 +50,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": ["./"],
+        "paths": ["./"]
       }
     }
   }

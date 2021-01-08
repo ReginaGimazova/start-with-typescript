@@ -1,13 +1,15 @@
-import CommentCard from "../components/molecules/CommentCard";
+import Card from "../components/molecules/Card";
 import MainTemplate from "../components/templates/MainTemplate";
-import TextArea from "../components/atoms/TextArea";
+import useCards from "../hooks/useCards";
 
 const Home = () => {
+  const {cards, loading, error} = useCards();
+
   return (
     <MainTemplate>
-      <h3>Hello</h3>
-      <CommentCard />
-      <TextArea />
+      {cards.map(card => card && (
+        <Card text={card.text} key={card.id} />
+      ))}
     </MainTemplate>
   )
 }
