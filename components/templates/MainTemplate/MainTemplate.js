@@ -7,9 +7,9 @@ const Main = styled.main`
   padding: 10px;
 `;
 
-const MainTemplate = ({children}) => (
+const MainTemplate = ({children, loading}) => (
   <Main>
-    {children}
+    {loading ? <p>loading...</p> : children}
   </Main>
 );
 

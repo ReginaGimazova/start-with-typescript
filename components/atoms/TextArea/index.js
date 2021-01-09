@@ -1,8 +1,13 @@
 import {TextAreaStyled} from './styled';
 
-function TextArea(props){
+const TextArea = ({cardText, setCardText}) => {
+  const onChange = event => {
+    event.preventDefault();
+    setCardText(event.target.value)
+  };
+
   return (
-    <TextAreaStyled />
+    <TextAreaStyled value={cardText} onChange={onChange}/>
   )
 }
 
