@@ -12,20 +12,14 @@ const customButtonStyles = () => css`
   margin-top: 10px;
 `;
 
-const CardForm = ({setCurrentCards, currentCards}) => {
-  const {saveCard, loading, error, savedCard} = useCreateCard();
+const CardForm = () => {
+  const {saveCard, loading, error} = useCreateCard();
   const [cardText, setCardText] = useState('');
 
   const onSaveCard = async () => {
     await saveCard(cardText);
     setCardText('')
   };
-
-  useEffect(() => {
-    if (!loading && savedCard){
-      setCurrentCards([...currentCards, savedCard])
-    }
-  }, [savedCard]);
 
   return (
     <Form>

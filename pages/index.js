@@ -16,6 +16,7 @@ const CardWrapper = styled.div`
 const Home = () => {
   const {cards, loading, error} = useCards();
   const {error: removeError, deleteCard} = useRemoveCard();
+  const {loading: addedCardLoading, error: addedCardError, addedCard} = useCardAdded();
 
   const [currentCards, setCurrentCards] = useState([]);
 
@@ -25,12 +26,18 @@ const Home = () => {
     }
   }, [cards]);
 
-  useCardAdded();
+  useEffect(() => {
+    if (addedCard){
+      setCurrentCards([...currentCards, addedCard])
+    }
+  }, [addedCard]);
 
   const onCardRemove = async cardId => {
     await deleteCard(cardId);
     const updatedCards = currentCards.filter(({id}) => +id !== +cardId);
-    setCurrentCards(updatedCards);
+    if (!removeError){
+      setCurrentCards(updatedCards);
+    }
   };
 
   return (
@@ -40,7 +47,7 @@ const Home = () => {
           <Card text={card.text} onCardRemove={() => onCardRemove(card.id)}/>
         </CardWrapper>
       ))}
-      <CardForm setCurrentCards={setCurrentCards} currentCards={currentCards} />
+      <CardForm />
     </MainTemplate>
   )
 }
