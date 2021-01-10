@@ -27,10 +27,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (cards) {
+    if (cards && !loading) {
       setCurrentCards(cards);
     }
-  }, [cards]);
+  }, [cards, loading]);
 
   useEffect(() => {
     if (addedCard) {
